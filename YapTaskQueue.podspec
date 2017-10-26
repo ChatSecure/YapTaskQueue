@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YapTaskQueue"
-  s.version      = "0.2.0"
+  s.version      = "0.3.0"
   s.summary      = "A persistent serial queue based on YapDatabase"
 
   # This description is used to generate tags and improve search results.
@@ -134,12 +134,12 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Standard'
   s.subspec 'Standard' do |ss|
     ss.source_files  = "YapTaskQueue/Classes/**/*.swift"
-    ss.dependency 'YapDatabase', '~> 2.9'
+    ss.dependency 'YapDatabase', '~> 3.0'
   end
 
   s.subspec 'SQLCipher' do |ss|
     ss.source_files  = "YapTaskQueue/Classes/**/*.swift"
-    ss.dependency 'YapDatabase/SQLCipher', '~> 2.9'
+    ss.dependency 'YapDatabase/SQLCipher', '~> 3.0'
   end
 
 end

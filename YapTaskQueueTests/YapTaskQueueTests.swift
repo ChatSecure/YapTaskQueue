@@ -10,6 +10,12 @@ import XCTest
 import YapDatabase
 @testable import YapTaskQueue
 
+fileprivate extension Double {
+    static var max: Double {
+        return Double.greatestFiniteMagnitude
+    }
+}
+
 class TestActionObject:NSObject, YapTaskQueueAction, NSCoding, NSCopying {
     var key:String
     var collection:String
@@ -84,7 +90,7 @@ open class TestHandler:YapTaskQueueHandler {
     @objc open func handleNextItem(_ action: YapTaskQueueAction, completion: (_ success: Bool, _ retryTimeout: TimeInterval) -> Void) {
     
         guard let testObject = action as? TestActionObject  else {
-            completion(false, DBL_MAX)
+            completion(false, Double.max)
             return
         }
         
@@ -216,7 +222,7 @@ class YapTaskQueueTests: XCTestCase {
         let handler = TestHandler { (action) -> (Bool,TimeInterval) in
             
             let nameInt = Int(action.name)
-            print("\(currentCount) \(nameInt)")
+            print("\(currentCount) \(String(describing: nameInt))")
             XCTAssert(currentCount == nameInt,"Expect Item: \(currentCount) - Recieved: \(nameInt!)")
             
             
@@ -302,10 +308,10 @@ class YapTaskQueueTests: XCTestCase {
             count += 1
             if (count == 2) {
                 let timeDifference = abs(startDate.timeIntervalSinceNow)
-                XCTAssertEqualWithAccuracy(timeDifference, delay, accuracy: 0.5)
+                XCTAssertEqual(timeDifference, delay, accuracy: 0.5)
                 expectation.fulfill()
             }
-            return (false,DBL_MAX)
+            return (false,Double.max)
         }
         //Setup the queue with one action
         self.setupQueue(database, handler: handler, actionCount: 1, name: "queue")
@@ -336,7 +342,7 @@ class YapTaskQueueTests: XCTestCase {
             if count == 2 {
                 let timeDifference = abs(startDate.timeIntervalSinceNow)
                 
-                XCTAssertEqualWithAccuracy(timeDifference, delay, accuracy: 0.5)
+                XCTAssertEqual(timeDifference, delay, accuracy: 0.5)
                 return (true,0)
             }
             // This is the third time through so we're done with the test
