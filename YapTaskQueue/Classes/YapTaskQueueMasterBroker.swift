@@ -14,7 +14,7 @@ import YapDatabase.YapDatabaseView
 ///Only create one of these per database. This is required to filter out all the available actoins. The queue is managed in YapTaskQueueBroker
 open class YapTaskQueueMasterBroker:YapDatabaseAutoView {
     
-    public convenience init(options:YapDatabaseViewOptions?) {
+    @objc public convenience init(options:YapDatabaseViewOptions?) {
         
         let grouping = YapDatabaseViewGrouping.withObjectBlock { (transaction, collection, key, object) -> String? in
             guard let actionObject = object as? YapTaskQueueAction else {
