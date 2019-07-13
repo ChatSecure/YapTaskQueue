@@ -132,7 +132,7 @@ public enum DatabaseStrings:String {
     
     /// Executes on registration with a database.
     /// Overriding internal method from YapDatabaseExtension.didRegisterExtension
-    @objc func didRegisterExtension() {
+    @objc override open func didRegister() {
         guard let database = self.registeredDatabase else { return }
         if let observer = yapNotificationObserver {
             NotificationCenter.default.removeObserver(observer)
