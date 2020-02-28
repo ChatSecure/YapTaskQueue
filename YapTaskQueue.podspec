@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "10.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -134,12 +134,12 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Standard'
   s.subspec 'Standard' do |ss|
     ss.source_files  = "YapTaskQueue/Classes/**/*.swift"
-    ss.dependency 'YapDatabase', '~> 3.0'
+    ss.dependency 'YapDatabase', '~> 4.0'
   end
 
   s.subspec 'SQLCipher' do |ss|
     ss.source_files  = "YapTaskQueue/Classes/**/*.swift"
-    ss.dependency 'YapDatabase/SQLCipher', '~> 3.0'
+    ss.dependency 'YapDatabase/SQLCipher', '~> 4.0'
   end
 
 end

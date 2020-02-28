@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import YapDatabase.YapDatabaseFilteredView
 import YapDatabase
 
 internal enum QueueState {
